@@ -47,6 +47,8 @@ public class DesyncBox {
         sharedPermutations.register("accentTE", true);
         sharedPermutations.register("accentCH", true);
         sharedPermutations.register("notchunked", true);
+        sharedPermutations.register("newline1", true);
+        sharedPermutations.register("newline2", true);
 
 
         for(int i: DesyncBox.getSpecialChars()) {
@@ -258,6 +260,10 @@ public class DesyncBox {
                 transformed = Utilities.replace(request, "Transfer-Encoding: chunked", "Transfer-Encoding chunked : chunked");
             } else if (technique.equals("notchunked")){
                 transformed = Utilities.replace(request, "Transfer-Encoding: chunked", "Nothing-interesting: 1");
+            } else if (technique.equals("newline1")){
+                transformed = Utilities.replace(request, "Transfer-Encoding: chunked", "Transfer-Encoding\r\n : chunked");
+            } else if (technique.equals("newline2")){
+                transformed = Utilities.replace(request, "Transfer-Encoding: chunked", "Transfer-Encoding\n : chunked");
             }
 
 
